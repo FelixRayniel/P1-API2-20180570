@@ -13,5 +13,5 @@ import com.example.p1_api2_20180570.model.Prestamo
 
 abstract class RegistroPrestamoDb : RoomDatabase() {
 
-    abstract val personaDao: PrestamoDao
+    abstract val prestamoDao: PrestamoDao
 }
