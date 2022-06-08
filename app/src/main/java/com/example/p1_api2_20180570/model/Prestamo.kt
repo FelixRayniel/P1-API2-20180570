@@ -7,6 +7,7 @@ import  androidx.room.PrimaryKey
 
 data class Prestamo (
     @PrimaryKey(autoGenerate = true)
+    val prestamoId: Int = 0,
     val Deudor: String,
     val Concepto: String,
     val Monto: Float
