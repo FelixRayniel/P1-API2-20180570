@@ -45,13 +45,13 @@ class MainActivity : ComponentActivity() {
 fun MyApp() {
     val navHostController = rememberNavController( )
 
-    NavHost(navController = navHostController, startDestination = Pantalla.ListadoPaciente.route) {
+    NavHost(navController = navHostController, startDestination = Pantalla.ListadoPrestamo.route) {
 
-        composable(Pantalla.ListadoPaciente.route){
-            ListadoPaciente(clickRegitro = {navHostController.navigate(Pantalla.RegistroPaciente.route)})
+        composable(Pantalla.ListadoPrestamo.route){
+            ListadoPrestamo(clickRegitro = {navHostController.navigate(Pantalla.RegistroPrestamo.route)})
         }
-        composable(route = Pantalla.RegistroPaciente.route){
-            RegistroPaciente()
+        composable(route = Pantalla.RegistroPrestamo.route){
+            RegistroPrestamo()
         }
     }
 }
@@ -65,11 +65,11 @@ fun DefaultPreview() {
 }
 
 @Composable
-fun ListadoPaciente(clickRegitro:() ->Unit){
+fun ListadoPrestamo(clickRegitro:() ->Unit){
     val scaffoldState = rememberScaffoldState()
     Scaffold(
         topBar = {
-            TopAppBar(title = {Text(text = "Listado")})
+            TopAppBar(title = {Text(text = "Listado Prestamo")})
 
         },
         floatingActionButton = {
@@ -102,79 +102,53 @@ fun RowNombre(nombre: String){
 }
 
 @Composable
-fun RegistroPaciente(){
+fun RegistroPrestamo(){
 
     val scaffoldState = rememberScaffoldState()
-    var paciente by rememberSaveable() {
+    var prestamo by rememberSaveable() {
         mutableStateOf("")
     }
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = "Registro")})
+            TopAppBar(title = { Text(text = "Registro Prestamo")})
         },
 
         scaffoldState = scaffoldState
 
     ) {
         Column(modifier = Modifier.padding(8.dp)){
+
             OutlinedTextField(
                 label = {
-                    Text(text = "PacienteId")
+                    Text(text = "Deudor")
                 },
 
-                value = paciente,
-                onValueChange = {paciente = it},
+                value = prestamo,
+                onValueChange = {prestamo = it},
                 modifier = Modifier.fillMaxWidth()
             )
             OutlinedTextField(
                 label = {
-                    Text(text = "Nombres")
+                    Text(text = "Concepto")
                 },
 
-                value = paciente,
-                onValueChange = {paciente = it},
+                value = prestamo,
+                onValueChange = {prestamo = it},
                 modifier = Modifier.fillMaxWidth()
             )
             OutlinedTextField(
                 label = {
-                    Text(text = "Cedula")
+                    Text(text = "Monto")
                 },
 
-                value = paciente,
-                onValueChange = {paciente = it},
-                modifier = Modifier.fillMaxWidth()
-            )
-            OutlinedTextField(
-                label = {
-                    Text(text = "Email")
-                },
-
-                value = paciente,
-                onValueChange = {paciente = it},
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            OutlinedTextField(
-                label = {
-                    Text(text = "Telefono")
-                },
-                value = paciente,
-                onValueChange = {paciente = it},
+                value = prestamo,
+                onValueChange = {prestamo = it},
                 modifier = Modifier.fillMaxWidth()
             )
 
 
             Row() {
-                OutlinedButton(
-                    onClick = {
-
-                    },
-                    modifier = Modifier.padding(8.dp)
-                ) {
-                    Text(text = "Nuevo")
-
-                }
 
                 OutlinedButton(
                     onClick = {
@@ -184,15 +158,7 @@ fun RegistroPaciente(){
                 ) {
                     Text(text = "Guardar")
                 }
-                OutlinedButton(
-                    onClick = {
 
-                    },
-                    modifier = Modifier.padding(8.dp)
-                ) {
-                    Icon(imageVector = Icons.Default.Delete, contentDescription =null )
-                    Text(text = "Eliminar")
-                }
             }
         }
     }
