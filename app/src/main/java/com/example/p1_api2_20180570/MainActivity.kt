@@ -18,6 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.p1_api2_20180570.Utilidades.Pantalla
 import com.example.p1_api2_20180570.ui.theme.P1API220180570Theme
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    MyApp()
                 }
             }
         }
@@ -38,15 +42,25 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun MyApp() {
+    val navHostController = rememberNavController( )
+
+    NavHost(navController = navHostController, startDestination = Pantalla.ListadoPaciente.route) {
+
+        composable(Pantalla.ListadoPaciente.route){
+            ListadoPaciente(clickRegitro = {navHostController.navigate(Pantalla.RegistroPaciente.route)})
+        }
+        composable(route = Pantalla.RegistroPaciente.route){
+            RegistroPaciente()
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     P1API220180570Theme {
-        Greeting("Android")
+        MyApp()
     }
 }
 
@@ -55,7 +69,7 @@ fun ListadoPaciente(clickRegitro:() ->Unit){
     val scaffoldState = rememberScaffoldState()
     Scaffold(
         topBar = {
-            TopAppBar(title = {Text(text = "Listado de Pacientes")})
+            TopAppBar(title = {Text(text = "Listado")})
 
         },
         floatingActionButton = {
@@ -74,13 +88,7 @@ fun ListadoPaciente(clickRegitro:() ->Unit){
         Column(modifier = Modifier.padding(10.dp)) {
 
 
-            val lista = listOf("Juan", "Pedro", "Matias", "Mateo", "Felix")
 
-            LazyColumn(modifier = Modifier.fillMaxWidth()){
-                items(lista){
-                        nombre -> RowNombre(nombre)
-                }
-            }
         }
 
     }
@@ -103,7 +111,7 @@ fun RegistroPaciente(){
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = "Registro de Pacientes")})
+            TopAppBar(title = { Text(text = "Registro")})
         },
 
         scaffoldState = scaffoldState
