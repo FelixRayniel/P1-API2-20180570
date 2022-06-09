@@ -35,15 +35,17 @@ fun ListadoPrestamo(
             Button(onClick = { navController.navigate("RegistroPrestamo") }) {
                 Text(text = "Prestamo")
             }
-            LazyColumn(modifier = Modifier.fillMaxWidth()) {
-                items(list.value) { prestamo ->
-                    RowPrestamo(
-                        deudor = prestamo.Deudor,
-                        concepto = prestamo.Concepto,
-                        monto = prestamo.Monto,
+            Column {
+                LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                    items(list.value) { prestamo ->
+                        RowPrestamo(
+                            deudor = prestamo.Deudor,
+                            concepto = prestamo.Concepto,
+                            monto = prestamo.Monto,
 
 
-                    )
+                            )
+                    }
                 }
             }
 
@@ -53,8 +55,8 @@ fun ListadoPrestamo(
 }
 
 @Composable
-fun RowPrestamo(deudor: String,concepto: String,monto: Float, ){
-    Row(){
+fun RowPrestamo(deudor: String, concepto: String, monto: Float) {
+    Column(modifier = Modifier.padding(8.dp)) {
         Text("Deudor : $deudor")
         Text("Concepto : $concepto")
         Text("Monto : $monto")

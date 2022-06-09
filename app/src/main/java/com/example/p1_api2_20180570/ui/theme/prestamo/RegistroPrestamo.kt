@@ -42,8 +42,8 @@ fun RegistroPrestamo(
                     Text(text = "Deudor")
                 },
 
-                value = prestamo,
-                onValueChange = {prestamo = it},
+                value = viewModel.deudor,
+                onValueChange = {viewModel.deudor = it},
                 modifier = Modifier.fillMaxWidth()
             )
             OutlinedTextField(
@@ -51,8 +51,8 @@ fun RegistroPrestamo(
                     Text(text = "Concepto")
                 },
 
-                value = prestamo,
-                onValueChange = {prestamo = it},
+                value = viewModel.concepto,
+                onValueChange = {viewModel.concepto = it},
                 modifier = Modifier.fillMaxWidth()
             )
             OutlinedTextField(
@@ -60,8 +60,8 @@ fun RegistroPrestamo(
                     Text(text = "Monto")
                 },
 
-                value = prestamo,
-                onValueChange = {prestamo = it},
+                value = viewModel.monto.toString(),
+                onValueChange = {viewModel.monto = it.toFloat()},
                 modifier = Modifier.fillMaxWidth()
             )
 
